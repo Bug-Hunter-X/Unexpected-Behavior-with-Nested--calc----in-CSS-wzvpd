@@ -1,0 +1,30 @@
+To mitigate this issue, several approaches can be employed:
+
+1. **Using `min-width`:** Add a `min-width` property to ensure the element doesn't collapse to a negative width. This works well for simple cases where the width is always intended to be positive. 
+
+```css
+.element {
+  width: calc(50% + 10px);
+  min-width: 0; /* or a suitable minimum value */
+  background-color: lightblue;
+}
+```
+
+2. **Conditional CSS with media queries:** Using media queries allows you to apply different CSS rules based on the viewport width or container dimensions. This approach offers better control and flexibility.
+
+```css
+@media (min-width: 200px) {
+  .element {
+    width: calc(50% + 10px);
+    background-color: lightblue;
+  }
+}
+@media (max-width: 199px) {
+  .element {
+    width: 100%; /* Or another suitable width */
+    background-color: lightblue;
+  }
+}
+```
+
+3. **JavaScript Calculation:**  For complex scenarios, especially when dealing with nested `calc()` functions, JavaScript can be used to calculate the width dynamically based on container size, and setting it using inline styles or classes. This provides the most control but is more complex to implement.
