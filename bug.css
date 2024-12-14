@@ -1,0 +1,25 @@
+The following CSS code snippet demonstrates an uncommon error that can occur when using the `calc()` function with percentages and other units: 
+
+```css
+.element {
+  width: calc(50% + 10px);
+  background-color: lightblue;
+}
+```
+
+This code intends to set the width of the `.element` to 50% of its container's width plus an additional 10 pixels. However, if the container's width is too small, the resulting width might become negative, causing unexpected behavior or rendering issues.  The browser might clamp the width to 0, or render it incorrectly. This is especially problematic when the element's width is a part of a larger layout.
+
+Another example, and potentially more problematic, is when combining percentages with other units within nested `calc()` functions:
+
+```css
+.container {
+  width: 50%;
+}
+
+.element {
+  width: calc(calc(50% + 10px) + 20px);
+  background-color: lightblue;
+}
+```
+
+This example nests `calc()` functions, making it even harder to predict the outcome and much more likely to produce unexpected results, especially for narrow containers.
